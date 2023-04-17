@@ -19,6 +19,24 @@ horaformato = hora_actual.strftime("%H:%M")
 fecha_actual = datetime.date.today()
 fechaformato = fecha_actual.strftime("%d/%m/%Y")
 
+if description == "Sunny":
+    description = ("soleado")
+elif description == "Clear":
+    description = ("despejado")
+elif description == "Light rain shower":
+    description = ("lluvia ligera")
+elif description == "Patchy light rain":
+    description = ("lluvia ligera irregular")
+elif description == "Partly cloudy":
+    description = ("parcialmente nublado")
+elif description == "Fog":
+  description = ("neblina")
+elif description == "Patchy rain possible":
+    description = ("posible lluvia irregular")
+elif description == "Light Rain":
+    description = ("lluvia ligera")
+elif description == "Light Rain, Fog":
+    description = ("lluvia ligera con niebla")
 print(f'El clima actual en {location} es {description} con una temperatura de {temperature} grados Celsius a las {horaformato} el {fechaformato}')
 
 coda = Coda('c5149980-deb1-4979-952f-f3d49ec5b038')
