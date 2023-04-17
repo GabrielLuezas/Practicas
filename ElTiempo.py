@@ -1,19 +1,20 @@
 import requests
 from codaio import Coda, Document, Cell, Row 
 import datetime
-
+#Pregunta que te hace decir una ciudad
 ciudad = input("Dime una Ciudad: ")
 params = {
   'access_key': '3814acbde3108b3c251e2654e9573de5',
   'query': ciudad
 }
-
+#Get para conseguir informacion sobre el tiempo
 api_result = requests.get('http://api.weatherstack.com/current', params)
-
+#Clima, temperatura
 data = api_result.json()
 location = data['location']['name']
 temperature = data['current']['temperature']
 description = data['current']['weather_descriptions'][0]
+#Fecha y hora
 hora_actual = datetime.datetime.now()
 horaformato = hora_actual.strftime("%H:%M")
 fecha_actual = datetime.date.today()
