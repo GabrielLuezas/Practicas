@@ -1,5 +1,5 @@
 import requests
-from codaio import Coda, Document, Cell, Row 
+from codaio import Coda, Document, Cell
 import datetime
 #Pregunta que te hace decir una ciudad
 ciudad = input("Dime una Ciudad: ")
