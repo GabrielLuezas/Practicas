@@ -44,6 +44,3 @@ celda2_2 = Cell(column='c--pJGgINgeR', value_storage='Ruiz')
 celda3_2 = Cell(column='c-T3dMGwCtv3', value_storage='32')
 celda4_2 = Cell(column='c-mmnRbjpiHh', value_storage='Manzana')
 table.update_row(row1, [celda1, celda2, celda3, celda4])
-
-
-
