@@ -4,7 +4,7 @@ import datetime
 #Pregunta que te hace decir una ciudad
 ciudad = input("Dime una Ciudad: ")
 params = {
-  'access_key': '3814acbde3108b3c251e2654e9573de5',
+  'access_key': '9fb25c002a54d299b97223b9503828a0',
   'query': ciudad
 }
 #Get para conseguir informacion sobre el tiempo
@@ -57,6 +57,10 @@ elif description == "Moderate or heavy rain shower":
     description = ("Chubasco de lluvia moderada o fuerte")
 elif description == "Patches Of Fog":
     description = ("Parches de niebla")
+elif description == "Mist, Haze":
+    description = ("Niebla/Neblina")
+elif description == "Patchy light rain with thunder":
+    description = ("Lluvia ligera irregular con truenos")
 print(f'El clima actual en {location} es {description} con una temperatura de {temperature} grados Celsius a las {horaformato} el {fechaformato}')
 
 #Parte de Coda
