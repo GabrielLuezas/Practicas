@@ -48,7 +48,10 @@ elif description == "Rain":
   description = ("Lluvia")
 elif description == "Hail":
     description = ("Granizo")
-
+elif description == "Light Snow":
+    description = ("Nieve Ligera")
+elif description == "Mist":
+    description = ("Neblina")
 print(f'El clima actual en {location} es {description} con una temperatura de {temperature} grados Celsius a las {horaformato} el {fechaformato}')
 
 #Parte de Coda
