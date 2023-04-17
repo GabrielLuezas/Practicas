@@ -19,26 +19,39 @@ horaformato = hora_actual.strftime("%H:%M")
 fecha_actual = datetime.date.today()
 fechaformato = fecha_actual.strftime("%d/%m/%Y")
 
+#Traduccion de el clima ingles - español 
 if description == "Sunny":
-    description = ("soleado")
+    description = ("Soleado")
 elif description == "Clear":
-    description = ("despejado")
+    description = ("Despejado")
 elif description == "Light rain shower":
-    description = ("lluvia ligera")
+    description = ("Lluvia ligera")
 elif description == "Patchy light rain":
-    description = ("lluvia ligera irregular")
+    description = ("Lluvia ligera irregular")
 elif description == "Partly cloudy":
-    description = ("parcialmente nublado")
+    description = ("Parcialmente nublado")
 elif description == "Fog":
-  description = ("neblina")
+  description = ("Neblina")
 elif description == "Patchy rain possible":
-    description = ("posible lluvia irregular")
+    description = ("Posible lluvia irregular")
 elif description == "Light Rain":
-    description = ("lluvia ligera")
+    description = ("Lluvia ligera")
 elif description == "Light Rain, Fog":
-    description = ("lluvia ligera con niebla")
+    description = ("Lluvia ligera con niebla")
+elif description == "Haze":
+    description = ("Bruma")
+elif description == "Light Drizzle":
+    description = ("Llovizna ligera")
+elif description == "Overcast":
+    description = ("Nublado")
+elif description == "Rain":
+  description = ("Lluvia")
+elif description == "Hail":
+    description = ("Granizo")
+
 print(f'El clima actual en {location} es {description} con una temperatura de {temperature} grados Celsius a las {horaformato} el {fechaformato}')
 
+#Parte de Coda
 coda = Coda('c5149980-deb1-4979-952f-f3d49ec5b038')
 doc = Document('05ZbXhV8oe', coda=coda)
 table = doc.get_table("Temperaturas")
