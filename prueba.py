@@ -16,7 +16,7 @@ df = pd.DataFrame(table.to_dict())
 df.to_csv('PruebaCSV.csv')
 df.to_excel('PruebaExcell.xlsx')
 print(df)
-print(df.head)
+print(df.tail)
 
 #Conseguir el valor de una celda de una fila y columna concretas 
 cell = table['i-kzGS5eVqkW']['c-mmnRbjpiHh']
