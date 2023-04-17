@@ -52,6 +52,10 @@ elif description == "Light Snow":
     description = ("Nieve Ligera")
 elif description == "Mist":
     description = ("Neblina")
+elif description == "Moderate or heavy rain shower":
+    description = ("Chubasco de lluvia moderada o fuerte")
+elif description == "Patches Of Fog":
+    description = ("Parches de niebla")
 print(f'El clima actual en {location} es {description} con una temperatura de {temperature} grados Celsius a las {horaformato} el {fechaformato}')
 
 #Parte de Coda
