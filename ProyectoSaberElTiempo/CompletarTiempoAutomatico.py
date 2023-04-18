@@ -90,8 +90,8 @@ def tarea():
     celda5 = Cell(column='c-ToyoKzUWnY', value_storage= fechaformato)
     table.update_row(idprimerafila, [celda2, celda3, celda4, celda5])
     print (f"La temperatura de {location} ha sido añadida correctamente")
-
-schedule.every(15).econds.do(tarea)
+#Con esto reproduce la funcion de arriba cada 15 segundos
+schedule.every(15).seconds.do(tarea)
 while True:
     schedule.run_pending()
     time.sleep(1)
