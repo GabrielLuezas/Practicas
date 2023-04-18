@@ -91,7 +91,7 @@ def tarea():
     table.update_row(idprimerafila, [celda2, celda3, celda4, celda5])
     print (f"La temperatura de {location} ha sido añadida correctamente")
 
-schedule.every(15).seconds.do(tarea)
+schedule.every(15).econds.do(tarea)
 while True:
     schedule.run_pending()
     time.sleep(1)
