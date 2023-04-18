@@ -18,6 +18,7 @@ uri = f'https://coda.io/apis/v1/docs/05ZbXhV8oe/tables/grid-MArENxYZlC/rows'
 res = requests.get(uri, headers=headers)
 print(res)
 data = res.json()
+print(data)
 idprimerafila= data['items'][0]['id']
 print(idprimerafila)
 
