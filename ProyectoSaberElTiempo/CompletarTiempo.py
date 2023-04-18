@@ -87,3 +87,4 @@ celda4 = Cell(column='c-yF5y_9DV0e', value_storage= horaformato)
 celda5 = Cell(column='c-ToyoKzUWnY', value_storage= fechaformato)
 table.update_row(idprimerafila, [celda2, celda3, celda4, celda5])
 print (f"La temperatura de {location} ha sido añadida correctamente")
+
