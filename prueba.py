@@ -16,8 +16,10 @@ df = pd.DataFrame(table.to_dict())
 df.to_csv('PruebaCSV.csv')
 df.to_excel('PruebaExcell.xlsx')
 print(df)
-print(df.tail)
-
+ultimafila=(df.tail(1))
+print(ultimafila.tail(1))
+nombre=ultimafila.loc[ultimafila.index[0], 'Nombre']
+print(nombre)
 #Conseguir el valor de una celda de una fila y columna concretas 
 cell = table['i-kzGS5eVqkW']['c-mmnRbjpiHh']
 print(cell)
