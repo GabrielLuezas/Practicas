@@ -10,13 +10,15 @@ df = pd.DataFrame(table.to_dict())
 ultimafila=(df.head(1))
 df2 = pd.DataFrame(table.to_dict())
 clima= df2["Clima"].values.tolist()
-print(clima)
+
+df2 = pd.DataFrame(table.to_dict())
+ciudades= df2["Ciudad"].values.tolist()
 
 ultimafila=(df.head(1))
 ciudad=ultimafila.loc[ultimafila.index[0], 'Ciudad']
 print(ciudad)
+print(ciudades)
 if clima[0] == '':
-    print("patata")
-    
-else:
-    print("patata2")
+    print("Esta vacio el clima")
+    if ciudad in ciudades: 
+        print("La ciudad introducida ya esta en ciudades, voy a actualizar la fila con los nuevos valores")
