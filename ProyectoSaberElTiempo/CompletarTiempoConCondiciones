@@ -1,0 +1,19 @@
+from codaio import Coda, Document, Cell, Row 
+import pandas as pd
+import datetime
+import requests
+
+coda = Coda('c5149980-deb1-4979-952f-f3d49ec5b038')
+doc = Document('05ZbXhV8oe', coda=coda)
+table = doc.get_table("Temperaturas Completar")
+df = pd.DataFrame(table.to_dict())
+ultimafila=(df.head(1))
+df2 = pd.DataFrame(table.to_dict())
+clima= df2["Clima"].values.tolist()
+vacio= clima[0]
+print(vacio)
+
+if vacio == False:
+    print("patata")
+else:  
+    print("hola")
