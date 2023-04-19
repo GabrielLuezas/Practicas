@@ -11,6 +11,7 @@ table = doc.get_table("Temperaturas Completar")
 df = pd.DataFrame(table.to_dict())
 ultimafila=(df.head(1))
 ciudad=ultimafila.loc[ultimafila.index[0], 'Ciudad']
+print(ultimafila)
 print(ciudad)
 #Encontrar el ID de la primera fila
 headers = {'Authorization': 'Bearer c5149980-deb1-4979-952f-f3d49ec5b038'}
@@ -18,7 +19,6 @@ uri = f'https://coda.io/apis/v1/docs/05ZbXhV8oe/tables/grid-MArENxYZlC/rows'
 res = requests.get(uri, headers=headers)
 print(res)
 data = res.json()
-print(data)
 idprimerafila= data['items'][0]['id']
 print(idprimerafila)
 
