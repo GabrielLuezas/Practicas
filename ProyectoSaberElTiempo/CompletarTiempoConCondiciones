@@ -19,6 +19,7 @@ ciudad=ultimafila.loc[ultimafila.index[0], 'Ciudad']
 print(ciudad)
 print(ciudades)
 if clima[0] == '':
-    print("Esta vacio el clima")
-    if ciudad in ciudades: 
-        print("La ciudad introducida ya esta en ciudades, voy a actualizar la fila con los nuevos valores")
+    if ciudad not in ciudades: 
+        print("Rellenando los datos de la nueva ciudad")
+    else:
+        print("Esa ciudad ya esta, la voy a actualizar")
