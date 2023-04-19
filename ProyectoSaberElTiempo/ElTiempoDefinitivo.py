@@ -27,11 +27,9 @@ def introducir():
     celda5 = Cell(column='c-unFl3Gz49K', value_storage= fechaformato)
     table.upsert_rows([[celda1, celda2, celda3, celda4, celda5]])
     print (f"La temperatura de {location} ha sido añadida correctamente")
-
 coda = Coda('c5149980-deb1-4979-952f-f3d49ec5b038')
 doc = Document('05ZbXhV8oe', coda=coda)
 table = doc.get_table("Temperaturas")
-
 #Conseguir la Ciudad
 ciudad = input("Dime una Ciudad: ")
 params = {
@@ -91,11 +89,9 @@ elif description == "Mist, Haze":
     description = ("Niebla/Neblina")
 elif description == "Patchy light rain with thunder":
     description = ("Lluvia ligera irregular con truenos")
-
 #Conseguir la columna Ciudad
 df2 = pd.DataFrame(table.to_dict())
 ciudades= df2["Ciudad"].values.tolist()
-
 print(ciudades)
 #Si ya existe, la fila se actualizara, si no existe crear la fila
 if ciudad in ciudades:
@@ -114,8 +110,6 @@ if ciudad in ciudades:
             break
     print(f"El id de fila de la ciudad {ciudad} es {id_fila}")
     actualizar() 
-
-    
 else:
     print("La ciudad introducida no esta en ciudades")
     print(f'El clima actual en {location} es {description} con una temperatura de {temperature} grados Celsius a las {horaformato} el {fechaformato}')
