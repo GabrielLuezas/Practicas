@@ -97,6 +97,14 @@ elif description == "Mist, Haze":
 elif description == "Patchy light rain with thunder":
     description = ("Lluvia ligera irregular con truenos")
 
+#Encontrar el ID de la primera fila para eliminarla
+headers = {'Authorization': 'Bearer c5149980-deb1-4979-952f-f3d49ec5b038'}
+uri = f'https://coda.io/apis/v1/docs/05ZbXhV8oe/tables/grid-MArENxYZlC/rows'
+res = requests.get(uri, headers=headers)
+data = res.json()
+idprimerafila= data['items'][0]['id']
+filaeliminar= idprimerafila
+fila= table.get_row_by_id(idprimerafila)
 if ciudad not in ciudades:
     print("Rellenando los datos de la nueva ciudad")
     actualizar()
@@ -108,9 +116,11 @@ else:
     res = requests.get(uri, headers=headers)
     informacion = res.json()
     #Hacemos un bucle, que busca en items si algun item tiene el valor de ciudad, y si lo tiene que nos de la id y salir del bucle
-    for item in informacion['items']:
-        if item['name'] == ciudad:
+    for item in informacion['items']: 
+        if item['name'] == ciudad and item['values']['c-IXDIhRIpB9'] != "":
             id_fila = item['id']
             break
     print(f"El id de fila de la ciudad {ciudad} es {id_fila}")
     actualizar2()
+    print("Eliminado la fila con ciudad repetida")
+    fila.delete()
