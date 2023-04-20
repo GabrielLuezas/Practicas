@@ -103,7 +103,6 @@ uri = f'https://coda.io/apis/v1/docs/05ZbXhV8oe/tables/grid-MArENxYZlC/rows'
 res = requests.get(uri, headers=headers)
 data = res.json()
 idprimerafila= data['items'][0]['id']
-filaeliminar= idprimerafila
 fila= table.get_row_by_id(idprimerafila)
 if ciudad not in ciudades:
     print("Rellenando los datos de la nueva ciudad")
