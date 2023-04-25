@@ -1,0 +1,166 @@
+Option Explicit
+'Main Function
+Function SpellNumber(ByVal MyNumber)
+    Dim Pesos, Cents, Temp
+    Dim DecimalPlace, Count
+    ReDim Place(9) As String
+    Place(2) = " Mil "
+    Place(3) = " Millones "
+    Place(4) = " Mil Millones "
+    Place(5) = " Billones "
+    ' String representation of amount.
+    MyNumber = Trim(Str(MyNumber))
+    ' Position of decimal place 0 if nUn.
+    DecimalPlace = InStr(MyNumber, ".")
+    ' Convert cents and set MyNumber to dollar amount.
+    If DecimalPlace > 0 Then
+        Cents = GetTens(Left(Mid(MyNumber, DecimalPlace + 1) & _
+                  "00", 2))
+        MyNumber = Trim(Left(MyNumber, DecimalPlace - 1))
+    End If
+    Count = 1
+    Do While MyNumber <> ""
+        Temp = GetHundreds(Right(MyNumber, 3))
+        If Temp <> "" Then Pesos = Temp & Place(Count) & Pesos
+        If Len(MyNumber) > 3 Then
+            MyNumber = Left(MyNumber, Len(MyNumber) - 3)
+        Else
+            MyNumber = ""
+        End If
+        Count = Count + 1
+    Loop
+    Select Case Pesos
+        Case ""
+            Pesos = "Cero euros"
+        Case "Un"
+            Pesos = "Un euro"
+         Case Else
+            Pesos = Pesos & " euros"
+    End Select
+    Select Case Cents
+        Case ""
+            Cents = ""
+        Case "Un"
+            Cents = " y Un céntimo"
+              Case Else
+            Cents = " y " & Cents & " céntimos"
+    End Select
+
+    SpellNumber = Pesos & Cents
+    SpellNumber = Replace(SpellNumber, "Un Mil ", "Mil ")
+    SpellNumber = Replace(SpellNumber, "Un Millones ", "Un Millón ")
+    SpellNumber = Replace(SpellNumber, "Un Mil Millones ", "Mil Millones ")
+    SpellNumber = Replace(SpellNumber, "Un Billones ", "Un Billón ")
+    
+    SpellNumber = Replace(SpellNumber, " y Mil ", " y Un Mil ")
+    SpellNumber = Replace(SpellNumber, " y Un Millón ", " y Un Millones ")
+    SpellNumber = Replace(SpellNumber, " y Mil Millones ", " y Un Mil Millones ")
+    SpellNumber = Replace(SpellNumber, " y Un Billón ", " y Un Billones ")
+    
+    SpellNumber = Replace(SpellNumber, "  ", " ")
+    
+End Function
+      
+' Converts a number from 100-999 into text
+Function GetHundreds(ByVal MyNumber)
+    Dim Result As String
+    If Val(MyNumber) = 0 Then Exit Function
+    MyNumber = Right("000" & MyNumber, 3)
+    ' Convert the hundreds place.
+    If MyNumber = "100" Then
+          Result = "Cien "
+    ElseIf Mid(MyNumber, 1, 1) = "1" Then
+          Result = "Ciento "
+    ElseIf Mid(MyNumber, 1, 1) = "5" Then
+          Result = "Quinientos "
+    ElseIf Mid(MyNumber, 1, 1) = "7" Then
+          Result = "Setecientos "
+    ElseIf Mid(MyNumber, 1, 1) = "9" Then
+          Result = "Novecientos "
+    ElseIf Mid(MyNumber, 1, 1) <> "0" Then
+        Result = GetDigit(Mid(MyNumber, 1, 1)) & "cientos "
+    End If
+    ' Convert the tens and Ones place.
+    If Mid(MyNumber, 2, 1) <> "0" Then
+        Result = Result & GetTens(Mid(MyNumber, 2))
+    Else
+        Result = Result & GetDigit(Mid(MyNumber, 3))
+    End If
+    GetHundreds = Result
+End Function
+      
+' Converts a number from 10 to 99 into text.
+Function GetTens(TensText)
+    Dim Result As String
+    Result = ""           ' Null out the temporary function value.
+    If Val(Left(TensText, 1)) = 1 Then   ' If value between 10-19
+        Select Case Val(TensText)
+            Case 10: Result = "Diez"
+            Case 11: Result = "Once"
+            Case 12: Result = "Doce"
+            Case 13: Result = "Trece"
+            Case 14: Result = "Catorce"
+            Case 15: Result = "Quince"
+            Case 16: Result = "Dieciseis"
+            Case 17: Result = "Diecisiete"
+            Case 18: Result = "Dieciocho"
+            Case 19: Result = "Diecinueve"
+            Case Else
+        End Select
+    ElseIf Val(Left(TensText, 1)) = 2 Then   ' If value between 20-29
+        Select Case Val(TensText)
+            Case 20: Result = "Veinte"
+            Case 21: Result = "Ventiun"
+            Case 22: Result = "Ventidos"
+            Case 23: Result = "Ventitres"
+            Case 24: Result = "Venticuatro"
+            Case 25: Result = "Venticinco"
+            Case 26: Result = "Ventiseis"
+            Case 27: Result = "Ventisiete"
+            Case 28: Result = "Ventiocho"
+            Case 29: Result = "Ventinueve"
+            Case Else
+        End Select
+    ElseIf Val(Right(TensText, 1)) = 0 Then   ' If value between 30,40,50,60,70,80,90
+        Select Case Val(TensText)
+            Case 30: Result = "Treinta "
+            Case 40: Result = "Cuarenta "
+            Case 50: Result = "Cincuenta "
+            Case 60: Result = "Sesenta "
+            Case 70: Result = "Setenta "
+            Case 80: Result = "Ochenta "
+            Case 90: Result = "Noventa "
+            Case Else
+        End Select
+    Else                                 ' If value between 31-99...
+        Select Case Val(Left(TensText, 1))
+            Case 3: Result = "Treinta y "
+            Case 4: Result = "Cuarenta y "
+            Case 5: Result = "Cincuenta y "
+            Case 6: Result = "Sesenta y "
+            Case 7: Result = "Setenta y "
+            Case 8: Result = "Ochenta y "
+            Case 9: Result = "Noventa y "
+            Case Else
+        End Select
+        Result = Result & GetDigit _
+            (Right(TensText, 1))  ' Retrieve Ones place.
+    End If
+    GetTens = Result
+End Function
+     
+' Converts a number from 1 to 9 into text.
+Function GetDigit(Digit)
+    Select Case Val(Digit)
+        Case 1: GetDigit = "Un"
+        Case 2: GetDigit = "Dos"
+        Case 3: GetDigit = "Tres"
+        Case 4: GetDigit = "Cuatro"
+        Case 5: GetDigit = "Cinco"
+        Case 6: GetDigit = "Seis"
+        Case 7: GetDigit = "Siete"
+        Case 8: GetDigit = "Ocho"
+        Case 9: GetDigit = "Nueve"
+        Case Else: GetDigit = ""
+    End Select
+End Function
