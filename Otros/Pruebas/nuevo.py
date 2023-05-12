@@ -1,25 +1,31 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
-def mostrar_texto():
-    texto = entrada_texto.get()
-    etiqueta.config(text=texto)
+root = tk.Tk()
+root.geometry("350x100")
 
-ventana = tk.Tk()
+style = ttk.Style()
+style.theme_use('default')
+style.configure("blue.Horizontal.TProgressbar", background='pink', troughcolor='white')
 
-frm = ttk.Frame(ventana, padding=10)
-frm.grid(column=0, row=0)
+progress = ttk.Progressbar(root, orient="horizontal", length=200, mode="determinate", style="blue.Horizontal.TProgressbar")
+progress.pack(pady=10)
 
-etiqueta = ttk.Label(frm, text="Ingresa texto:")
-etiqueta.grid(column=0, row=0)
+def update_progress():
+    progress["value"] += 10
+    if progress["value"] < 100:
+        root.after(1000, update_progress)
+    else:
+        messagebox.showinfo("Mensaje de alerta", "¡Proceso completado con éxito!")
 
-entrada_texto = ttk.Entry(frm)
-entrada_texto.grid(column=1, row=0)
+def reset_progress():
+    progress["value"] = 0
 
-boton_mostrar = ttk.Button(frm, text="Mostrar texto", command=mostrar_texto)
-boton_mostrar.grid(column=2, row=0)
+start_button = tk.Button(root, text="Comenzar", command=update_progress)
+start_button.pack(side="left", padx=10)
 
-etiqueta_resultado = ttk.Label(frm, text="")
-etiqueta_resultado.grid(column=0, row=1, columnspan=3)
+reset_button = tk.Button(root, text="Reiniciar", command=reset_progress)
+reset_button.pack(side="left", padx=10)
 
-ventana.mainloop()
+root.mainloop()
