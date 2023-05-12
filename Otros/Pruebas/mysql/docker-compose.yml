@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootrootroot
+      MYSQL_DATABASE: prueba
+      MYSQL_USER: ejemplo
+      MYSQL_PASSWORD: rootroot
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./data:/var/lib/mysql"
