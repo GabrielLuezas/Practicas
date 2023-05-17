@@ -29,7 +29,7 @@ def importar_a_coda():
     texto2=entrada2.get()
     texto3=entrada3.get()
     celda1 = Cell(column='c-YDV8L12Kq8', value_storage= texto)
-    celda2 = Cell(column='c-gITD98c54Xa', value_storage= texto2)
+    celda2 = Cell(column='c-gITD98c54X', value_storage= texto2)
     celda3 = Cell(column='c-4E1QFCVR3A', value_storage= texto3)
     try:
         table.upsert_rows([[celda1, celda2, celda3]])
