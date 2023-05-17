@@ -6,7 +6,7 @@ ventana.geometry("300x100")
 
 check_var = tk.BooleanVar()
 check = tk.Checkbutton(ventana, text="Marca el checkbox", variable=check_var)
-check.pack()
+check.pack()    
 
 barra = ttk.Progressbar(ventana, orient="horizontal", length=200, mode="determinate")
 barra.pack()
@@ -17,7 +17,7 @@ estilo.theme_use('default')
 def actualizar_barra():
     if check_var.get():
         estilo.configure("green.Horizontal.TProgressbar", troughcolor='green', bordercolor='green', background='green')
-        barra.config(style="green.Horizontal.TProgressbar")
+        barra.config(style="green.Horizontal.TProgressbar")         
     else:
         estilo.configure("red.Horizontal.TProgressbar", troughcolor='red', bordercolor='red', background='red')
         barra.config(style="red.Horizontal.TProgressbar")
