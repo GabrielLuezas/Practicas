@@ -18,14 +18,12 @@ mycursor = mydb.cursor()
 df = pd.DataFrame(table.to_dict())
 df['Fecha'] = df['Fecha'].apply(lambda x: parser.parse(x).strftime('%Y-%m-%d'))
 print(df)
-
 try:
     cursor = mydb.cursor()
     cursor.execute("USE practicas")
     for _, row in df.iterrows():
         cursor.execute("INSERT INTO copia (ID, Nombre, Apellidos, Fecha) VALUES (%s, %s, %s, %s)",
                        (row['ID'], row['Nombre'], row['Apellidos'], row['Fecha']))
-    
     mydb.commit()
     print("Datos guardados exitosamente en la tabla copia.")
 except Error as e:
