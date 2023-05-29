@@ -1,0 +1,131 @@
+info:
+  description: API para gestionar usuarios
+  title: API de Usuarios
+  version: '1.0'
+paths:
+  /usuarios:
+    get:
+      responses:
+        '200':
+          description: Lista de usuarios
+          schema:
+            properties:
+              Usuarios:
+                items:
+                  type: object
+                type: array
+            type: object
+      summary: Obtener todos los usuarios
+    post:
+      parameters:
+      - description: Datos del usuario
+        in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            apellido:
+              type: string
+            edad:
+              type: integer
+            id:
+              type: string
+            nombre:
+              type: string
+          type: object
+      responses:
+        '200':
+          description: "Usuario a\xF1adido a Mongo"
+      summary: Agregar un nuevo usuario
+  /usuarios/{nombre_usuario}:
+    get:
+      parameters:
+      - description: Nombre del usuario
+        in: path
+        name: nombre_usuario
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Lista de usuarios encontrados
+          schema:
+            properties:
+              usuarios:
+                items:
+                  type: object
+                type: array
+            type: object
+        '404':
+          description: No se encontraron usuarios con el nombre especificado
+      summary: Obtener usuarios por nombre
+  /usuarios/{nombre_usuario}/{id_usuario}:
+    delete:
+      parameters:
+      - description: Nombre del usuario
+        in: path
+        name: nombre_usuario
+        required: true
+        type: string
+      - description: ID del usuario
+        in: path
+        name: id_usuario
+        required: true
+        type: string
+      responses:
+        '200':
+          description: "Usuario borrado con \xE9xito"
+        '404':
+          description: No hay documentos con ese nombre e ID
+      summary: Eliminar usuario por nombre e ID
+    get:
+      parameters:
+      - description: Nombre del usuario
+        in: path
+        name: nombre_usuario
+        required: true
+        type: string
+      - description: ID del usuario
+        in: path
+        name: id_usuario
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Usuario encontrado
+          schema:
+            type: object
+        '404':
+          description: "No se encontr\xF3 el usuario con el nombre y ID especificados"
+      summary: Obtener usuario por nombre e ID
+    put:
+      parameters:
+      - description: Nombre del usuario
+        in: path
+        name: nombre_usuario
+        required: true
+        type: string
+      - description: ID del usuario
+        in: path
+        name: id_usuario
+        required: true
+        type: string
+      - description: Datos del usuario
+        in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            apellido:
+              type: string
+            edad:
+              type: integer
+            nombre:
+              type: string
+          type: object
+      responses:
+        '200':
+          description: Documento actualizado correctamente
+        '404':
+          description: No hay documentos con ese nombre
+      summary: Actualizar usuario por nombre
+swagger: '2.0'
