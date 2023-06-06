@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cookies</title>
+</head>
+<body>
+    <h1>Aviso</h1>
+    <p>Acepta las cookies para poder acceder a la ruta</p>
+    <form action="{{ url_for('cookies') }}" method="POST">
+        <input type="hidden" name="action" value="accept">
+        <button type="submit">Aceptar</button>
+    </form>
+    <form action="{{ url_for('cookies') }}" method="POST">
+        <input type="hidden" name="action" value="reject">
+        <button type="submit">Rechazar</button>
+    </form>
+</body>
+</html>
