@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, session
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager, verify_jwt_in_request, unset_jwt_cookies, set_access_cookies, create_refresh_token
+from flask_jwt_extended import JWTManager
 import pymongo
+from datetime import timedelta
 
 cliente = pymongo.MongoClient('localhost',
                              port=27017,
@@ -17,11 +18,10 @@ def convertir_a_json(documento):
 
 app = Flask(__name__)
 
-login_user = False
-
 app.config["SECRET_KEY"] = "Patata" 
 app.config["JWT_SECRET_KEY"] = "Patata" 
 jwt = JWTManager(app)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(seconds=30)
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -31,6 +31,8 @@ def login():
     password = request.json['password']
     for verificacion in lista_usuarios:
         if verificacion["username"] == username and verificacion["password"] == password:
+            session.permanent = True 
+            session.modified = True
             session['login_user'] = True
             return redirect(url_for('protegida'))
     return jsonify({"msg": "El usuario o la contraseña son incorrectos"}), 401
