@@ -1,0 +1,17 @@
+# Usa la imagen base de Python
+FROM python:3.9
+
+# Establece el directorio de trabajo en /app
+WORKDIR /app
+
+# Copia los archivos necesarios a la imagen de Docker
+COPY apiprueba.py imagen.png /app/
+
+# Instala las dependencias de la API
+RUN pip install flask
+
+# Expone el puerto en el que la API estará escuchando
+EXPOSE 5000
+
+# Define el comando para ejecutar la API cuando el contenedor se inicie
+CMD ["python", "apiprueba.py"]
