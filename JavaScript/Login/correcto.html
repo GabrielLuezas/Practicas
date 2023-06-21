@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Correcto</title>
+</head>
+<body>
+  <script>
+    // Verificar si el usuario ha iniciado sesión
+    var isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      // El usuario no ha iniciado sesión correctamente, redireccionar a login.html
+      window.location.href = 'login.html';
+    } else {
+      // Mostrar mensaje de bienvenida
+      document.write('<h1>Login Correcto</h1>');
+      document.write('<p>Bienvenido, Juan. Has iniciado sesión correctamente.</p>');
+
+      // Establecer un temporizador para redireccionar después de 10 segundos
+      setTimeout(function() {
+        alert('La sesión ha expirado. Serás redirigido al formulario de inicio de sesión.');
+        localStorage.removeItem('isLoggedIn'); // Eliminar el estado de inicio de sesión
+        window.location.href = 'login.html'; // Redireccionar a login.html
+      }, 10000); // 10 segundos en milisegundos
+    }
+  </script>
+</body>
+</html>
